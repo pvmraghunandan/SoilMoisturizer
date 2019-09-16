@@ -29,7 +29,7 @@
  * WiFi setup
  */
 #define IOT_CONFIG_WIFI_SSID            "SSID"
-#define IOT_CONFIG_WIFI_PASSWORD        "Password"
+#define IOT_CONFIG_WIFI_PASSWORD        "PASSWORD"
 
 /**
  * Find under Microsoft Azure IoT Suite -> DEVICES -> <your device> -> Device Details and Authentication Keys
