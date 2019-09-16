@@ -71,7 +71,7 @@ void initTime()
 static IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle;
 void setup()
 {
-    pinMode(LED_PIN, OUTPUT);
+    
 
     Serial.begin(115200);
     Serial.setDebugOutput(true);

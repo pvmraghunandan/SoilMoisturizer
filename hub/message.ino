@@ -1,97 +1,45 @@
-#include <Adafruit_Sensor.h>
 #include <ArduinoJson.h>
-#include <DHT.h>
 #include <Wire.h>
 
-#if SIMULATED_DATA
-
-void initSensor()
-{
-    // use SIMULATED_DATA, no sensor need to be inited
-}
-
-float readTemperature()
-{
-    return random(20, 30);
-}
-
-float readHumidity()
-{
-    return random(30, 40);
-}
-
-float loop() {
-  float moisture_percentage;
-
-  moisture_percentage = ( 100.00 - ( (analogRead(sensor_pin)/1023.00) * 100.00 ) );
-
-  Serial.print("Soil Moisture(in Percentage) = ");
-  Serial.print(moisture_percentage);
-  Serial.println("%");
-
-  delay(1000);
-  return moisture_percentage;
-}   
-#else
 const int sensor_pin = A0;  /* Connect Soil moisture analog sensor pin to A0 of NodeMCU */
 
-
-
-
-static DHT dht(DHT_PIN, DHT_TYPE);
 void initSensor()
 {
-    dht.begin();
+    
 }
 
-float readTemperature()
+
+float readSoilMoisture()
 {
-    return dht.readTemperature();
+    float moisture_percentage, moisture_value;
+
+    //moisture_percentage = ( 100.00 - ( (analogRead(sensor_pin)/1023.00) * 100.00 ) );
+    moisture_value= analogRead(sensor_pin);
+    moisture_value= moisture_value/10;
+    return moisture_value;
 }
 
-float readHumidity()
-{
-  float moisture_percentage;
-
-  moisture_percentage = ( 100.00 - ( (analogRead(sensor_pin)/1023.00) * 100.00 ) );
-    return moisture_percentage;
-}
-
-#endif
 
 bool readMessage(int messageId, char *payload)
 {
     
 
     float temperature = 50.0;
-    float humidity = readHumidity();
+    float moisture_value = readSoilMoisture();
     StaticJsonBuffer<MESSAGE_MAX_LEN> jsonBuffer;
     JsonObject &root = jsonBuffer.createObject();
     root["deviceId"] = DEVICE_ID;
     root["messageId"] = messageId;
     bool temperatureAlert = false;
 
-    // NAN is not the valid json, change it to NULL
-    if (std::isnan(temperature))
+    
+    if (std::isnan(moisture_value))
     {
-        root["temperature"] = NULL;
+        root["moisture_value"] = NULL;
     }
     else
     {
-        root["temperature"] = temperature;
-        if (temperature > TEMPERATURE_ALERT)
-        {
-            temperatureAlert = true;
-        }
-    }
-
-    if (std::isnan(humidity))
-    {
-        root["humidity"] = NULL;
-    }
-    else
-    {
-        root["humidity"] = humidity;
+        root["moisture_value"] = moisture_value;
     }
     root.printTo(payload, MESSAGE_MAX_LEN);
     return temperatureAlert;

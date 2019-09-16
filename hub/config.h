@@ -1,10 +1,5 @@
 // Physical device information for board and sensor
-#define DEVICE_ID "Feather HUZZAH ESP8266 WiFi"
-#define DHT_TYPE DHT22
-
-// Pin layout configuration
-#define LED_PIN 0
-#define DHT_PIN 2
+#define DEVICE_ID "Soil Moisturize Detector"
 
 #define TEMPERATURE_ALERT 30
 
