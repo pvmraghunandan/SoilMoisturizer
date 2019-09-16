@@ -26,6 +26,16 @@ bool readMessage(int messageId, char *payload)
 
     float temperature = 50.0;
     float moisture_value = readSoilMoisture();
+    if (moisture_value > 100)
+    {
+      Serial.println("Detected Dryness. Turning on LED.");
+       digitalWrite(ledPin, LOW);
+    }
+    else
+    {
+       digitalWrite(ledPin, HIGH);
+    }
+    
     StaticJsonBuffer<MESSAGE_MAX_LEN> jsonBuffer;
     JsonObject &root = jsonBuffer.createObject();
     root["deviceId"] = DEVICE_ID;

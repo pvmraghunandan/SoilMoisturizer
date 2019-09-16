@@ -23,12 +23,12 @@
 /**
  * WiFi setup
  */
-#define IOT_CONFIG_WIFI_SSID            "SSID"
-#define IOT_CONFIG_WIFI_PASSWORD        "PASSWORD"
+#define IOT_CONFIG_WIFI_SSID            "iPhone"
+#define IOT_CONFIG_WIFI_PASSWORD        "h1psnw3a71mrj"
 
 /**
  * Find under Microsoft Azure IoT Suite -> DEVICES -> <your device> -> Device Details and Authentication Keys
  * String containing Hostname, Device Id & Device Key in the format:
  *  "HostName=<host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"    
  */
-#define IOT_CONFIG_CONNECTION_STRING    "HostName=<host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
+#define IOT_CONFIG_CONNECTION_STRING    "HostName=garage01.azure-devices.net;DeviceId=test1;SharedAccessKey=bKxntD4XuKAdV/tGw81Fw+O0FO+1gdaXa+jPv7nDHnM="

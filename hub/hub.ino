@@ -23,6 +23,7 @@ static char *ssid = IOT_CONFIG_WIFI_SSID;;
 static char *pass = IOT_CONFIG_WIFI_PASSWORD;
 
 static int interval = 2000;
+const int ledPin =  LED_BUILTIN;// the number of the LED pin
 
 void initWifi()
 {
@@ -82,6 +83,8 @@ void setup()
     initWifi();
     initTime();
     initSensor();
+    digitalWrite(ledPin, HIGH); 
+    pinMode(ledPin, OUTPUT);
 
     
  

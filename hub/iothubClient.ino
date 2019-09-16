@@ -2,6 +2,7 @@
 
 const char *onSuccess = "\"Successfully invoke device method\"";
 const char *notFound = "\"No method found\"";
+int ledState = LOW;
 
 static void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void *userContextCallback)
 {
@@ -77,6 +78,21 @@ IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HANDLE me
         strncpy(temp, (const char *)buffer, size);
         temp[size] = '\0';
         Serial.printf("Receive C2D message: %s.\r\n", temp);
+        String str(temp);
+        if (str.equalsIgnoreCase("ON"))
+        {
+          ledState = LOW;
+        }
+        else 
+        {
+          ledState = HIGH;
+        }
+        Serial.println(ledState);
+        Serial.println(str);
+        
+        // set the LED with the ledState of the variable:
+        digitalWrite(ledPin, ledState);
+        
         free(temp);
     }
     return IOTHUBMESSAGE_ACCEPTED;
