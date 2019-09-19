@@ -1,46 +1,49 @@
-Steps 
-1 Go to preferences 
- http://arduino.esp8266.com/stable/package_esp8266com_index.json.
-  Go to board manager and install 8266 version 2.5.2
-2  install driver –  for uploading file change board to node mcu 0.9
-2 proceed to portal.azure.com and create a hub.
-Click on Create a Source > Internet of Things > IoT Hub
-3 install all this library 
-•	AzureIoTHub
-•	AzureIoTUtility
-•	AzureIoTProtocol_MQTT
-•	ArduinoJson 5.0.8
-Code changes
-1 change in config.h
-Change username 
-Ssid and password and iot config connection string 
-2 change in Arduino.h file 
-Comment 
+Below are the steps to follow for deploying the code.
+
+- Open Arduino IDE & Go to Preferences Tab & update the "Additional Boards Manager URL" to  http://arduino.esp8266.com/stable/package_esp8266com_index.json.
+
+- Install the USB Driver for uploading file change board to node MCU 0.9
+https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
+
+- Install the below libraries in Arduino Under Tools -> Manage Libraries
+1.  AzureIoTHub
+1.  AzureIoTUtility
+1.  AzureIoTProtocol_MQTT
+1.  ArduinoJson 5.0.8
+
+Please note the verson of Arduino JSON and downgrade if higher version is installed.
+
+- Comment the below Line in Arduino.h File under "Local\Arduino15\packages"
 //#define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
-3  change in wificlientsecure.h file 
+
+- Change the code in WifiClientSecure.h file under "Local\Arduino15\packages"
+
 #define USING_AXTLS
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 #include "WiFiClientSecureAxTLS.h"
 using namespace axTLS;
-take this code out and comment the rest code below in file 
 
+Take the above code out and comment the rest code below in file.
 
+- Create an Iot Hub from Azure Portal & create new device
 
-2 Azure IoT Hub
-Now, it is time to register our IoT device, NodeMCUv2. To do so;
-•	Open your Azure Hub.
-•	Click on IoT Devices under Device Manager.
-•	Add a new device
-•	Give it a name, check the box and save.
-3 Registering the Device
-Click on the created device and open it.
-Get Devices Key and update config files 
-4 download code open it and Update your SSID Name, Password and Primary Key under your credentials.ino file from lines 28, 30, 32. Upload the code and open your serial monitor.
-5 downgrade arduinojson to version 5.13.5
-6 make changes in wificlientsecure.h file
-7 arduino.h line no 135 
-Comment //#define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
+- Now, it is time to register our IoT device, NodeMCUv2. To do so;
+1. Open your Azure Hub.
+2. Click on IoT Devices under Device Manager.
+3. Add a new device
+4. Give it a name, check the box and save.
+
+- Registering the Device in Iot Hub
+1. Click on the created device and open it.
+2. Get Devices Key and take a note.
+
+- Open Config.h in the Synced code from Git Hub & update the below values.
+1. SSID Name of Wifi
+2. Password of Wifi
+3. Device Connection String obtained from above step.
+
+- Now code is ready to be deployed.
 
 
 
