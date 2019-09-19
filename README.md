@@ -50,7 +50,7 @@ https://aka.ms/aziotdevexp
 
 
 - Sample Code
-
+```
 const int sensor_pin = A0; 
 void setup() 
 { Serial.begin(9600);
@@ -63,7 +63,7 @@ void setup()
  Serial.println("%"); delay(1000);
 
 
- }
+ }```
 
 
 
