@@ -66,5 +66,5 @@ void setup()
  }
 
 
-
+HostName=garage01.azure-devices.net;DeviceId=nodemcu01;SharedAccessKey=J+Rz0KbS0Eg7JPtvf3LfkZmJYf1vtUAGrr/lOuBJFUI=
 
