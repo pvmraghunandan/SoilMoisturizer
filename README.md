@@ -38,6 +38,9 @@ Take the above code out and comment the rest code below in file.
 1. Click on the created device and open it.
 2. Get Devices Key and take a note.
 
+- Download Device Explorer & install.
+https://aka.ms/aziotdevexp
+
 - Open Config.h in the Synced code from Git Hub & update the below values.
 1. SSID Name of Wifi
 2. Password of Wifi
